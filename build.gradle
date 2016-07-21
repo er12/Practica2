@@ -2,12 +2,26 @@ group 'Practica2'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'jetty'
+apply plugin: 'application'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
+
+archivesBaseName = "app"
+mainClassName = 'Main'
+applicationName = 'app'
 
 repositories {
     mavenCentral()
 }
+
+defaultTasks = ['stage']
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.6'
+}
+
+
 
 dependencies {
     def freemarkerVersion = "2.3.21"
@@ -22,4 +36,9 @@ dependencies {
 
 
 
+}
+
+
+task stage {
+    dependsOn installDist
 }
